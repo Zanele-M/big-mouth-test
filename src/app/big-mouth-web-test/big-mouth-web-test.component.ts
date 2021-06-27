@@ -18,8 +18,8 @@ export class BigMouthWebTestComponent {
 
   read(event: any) {
     const paragragh = event.target.textContent;
-    
-    this.bigMouthApiService.getTexttoSpeach(paragragh);
+    console.log("Get request");
+    console.log("Hey", this.bigMouthApiService.getTexttoSpeach(paragragh));
   }
 
 }

@@ -15,7 +15,7 @@ export class BigMouthApiService {
 
   getTexttoSpeach(text: string) {
     const finalRequest = ({
-      url: 'https://eastus.tts.speech.microsoft.com/cognitiveservices/v1', 
+      url: 'https://bigmouth.azurewebsites.net/api/bigmouthtrigger', 
       body: {
         text: text,
         properties: {
