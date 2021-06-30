@@ -25,7 +25,7 @@ export class BigMouthApiService {
 
     return this.httpClient
       .post( finalRequest.url, finalRequest.body )
-      .pipe(catchError(this.handleError)) as Observable<any>;
+      .pipe(catchError(this.handleError)).subscribe(() => { });
   }
 
   handleError(error: Error) {
