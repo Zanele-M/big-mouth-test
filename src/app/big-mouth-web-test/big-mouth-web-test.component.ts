@@ -18,14 +18,13 @@ export class BigMouthWebTestComponent {
   }
 
   play(paragragh: string ) {
-  
-   = 
 
   var context: AudioContext;    // Audio context
 
   context = new AudioContext();
-   this.bigMouthApiService.getTexttoSpeach(paragragh).subscribe(result  => this.audioObj.src = result
-    );
+   this.bigMouthApiService.getTexttoSpeach(paragragh).subscribe(result  => this.audioObj.src = result );
+   console.log(this.audioObj);
+   this.audioObj.play();
   }
 
 }
