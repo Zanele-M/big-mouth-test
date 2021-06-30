@@ -8,11 +8,9 @@
 
 <h1>Big Mouth</h1>
 
-<form>
   <label for="heading">Moin! Bitte geben Sie einen Satz ein und ich werde in Audio umwandeln:</label><br>
-  <input type="text" id="text" value=""><br>
-  <input type="submit" (click)="play()" value="Play">
-</form> 
+  <input #text type="text" id="text" text.value=""><br>
+  <input type="submit" (click)="play(text.value)" value="Play">
 
 </div>
 </body>

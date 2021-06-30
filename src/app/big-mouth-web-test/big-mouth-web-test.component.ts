@@ -9,17 +9,13 @@ import { BigMouthApiService } from '../services/big-mouth-api.service';
 })
 export class BigMouthWebTestComponent {
 
-  @Output() hover = new EventEmitter();  
-
   constructor(private bigMouthApiService: BigMouthApiService){}
  
   ngOnInit(): void {
   }
 
-  play() {
-    const paragragh = ;
-    console.log("Plays", paragragh);
-    this.bigMouthApiService.getTexttoSpeach(paragragh);
+  play(paragragh: string ) {
+    console.log(this.bigMouthApiService.getTexttoSpeach(paragragh));
   }
 
 }

@@ -11,8 +11,6 @@ export class BigMouthApiService {
 
   constructor(private httpClient: HttpClient){}
 
-  API_KEY = 'YOUR_API_KEY';
-
   getTexttoSpeach(text: string) {
     const finalRequest = ({
       url: 'https://bigmouth.azurewebsites.net/api/bigmouthtrigger', 
