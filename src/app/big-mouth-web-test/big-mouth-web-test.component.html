@@ -10,6 +10,8 @@
 
   <label for="heading">Hello! Please enter your text here:</label><br>
   <input #text type="text" id="text" text.value=""><br>
+  <input #text type="text" id="language" language.value="en-US" ><br>
+  <input #text type="text" id="voice_name" voice_name.value="en-US-Guy24kRUS"><br>
   <input type="submit" (click)="play(text.value)" value="Play">
 
 </div>

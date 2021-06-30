@@ -11,7 +11,7 @@ export class BigMouthApiService {
 
   constructor(private httpClient: HttpClient){}
 
-  getTexttoSpeach(text: string) {
+  getTexttoSpeach(text: string): Observable<any> {
     const finalRequest = ({
       url: 'https://bigmouth.azurewebsites.net/api/bigmouthtrigger', 
       body: {
@@ -22,18 +22,20 @@ export class BigMouthApiService {
         }
       }, //Make xml requst
      });
-
+    
     return this.httpClient
-      .post( finalRequest.url, finalRequest.body )
-      .pipe(catchError(this.handleError)).subscribe(() => { });
+      .post( finalRequest.url, finalRequest.body, {responseType: 'arraybuffer'})
+      .pipe(catchError(this.handleError));
   }
 
   handleError(error: Error) {
 
     if(error instanceof Error)
     {
+      console.log(error)
       return throwError(error)
+      
     }
-    return throwError('Something bad happened; please try again later.');
+    return throwError(error);
   }
 }
