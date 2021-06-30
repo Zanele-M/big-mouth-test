@@ -16,10 +16,10 @@ export class BigMouthWebTestComponent {
   ngOnInit(): void {
   }
 
-  read(event: any) {
-    const paragragh = event.target.textContent;
-    console.log("Get request");
-    console.log("Hey", this.bigMouthApiService.getTexttoSpeach(paragragh));
+  play() {
+    const paragragh = ;
+    console.log("Plays", paragragh);
+    this.bigMouthApiService.getTexttoSpeach(paragragh);
   }
 
 }

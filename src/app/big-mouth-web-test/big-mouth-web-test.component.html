@@ -1,52 +1,19 @@
-<!-- Toolbar -->
-<div class="toolbar" role="banner">
-    <img
-      width="40"
-      alt="Angular Logo"
-      src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
-    />
-    <span>Welcome</span>
-      <div class="spacer"></div>
-  </div>
-  
-  <div (mouseover) = "read($event)" class="heading">
-  <h1 class="item">Laid-Back Dad Just Wants New Pair Of Brandless Aviators He Got At Omaha Gas Station In 1993 For Father’s Day</h1>
-  </div>
-  
-  <div class="paragraph">
-  <p (mouseover) = "read($event)" id="read" class="item">
-    BEAVERCREEK, OH—Stressing he did not need anything fancy, 
-    local laid-back dad Mark McNaren told his family Friday that
-     he just wanted a new pair of the brandless aviators he got at an Omaha gas
-      station back in 1993 for Father’s Day. “You know, what I’d really love is a pair of those shades 
-      we got at that filling station on the way to visit your uncle,” said McNaren to his family, fondly 
-      recalling how the wholly generic piece of eyewear he bought 27 years ago for $6.99 fit perfectly and had a 
-      “really classic look.” “I used to wear those all the time until I lost them when we were at that water park. 
-      Does that gas station have a website? Maybe you can order them online.” McNaren added that, aside from the glasses, 
-      the only other thing he would want was another one of those shirts he got in 2002 for participating in a charity 5K walk.
-   </p>
-  </div>
-  
-  <div (mouseover) = "read($event)" class="heading">
-    <h1 class="item">Tesla Blames User Error For Car Sealing Off Windows, Suffocating Owner Alive</h1>
-    </div>
-    
-    <div class="paragraph">
-    <p (mouseover) = "read($event)" id="read" class="item">
-      PALO ALTO, CA—Claiming the brand was faultless if drivers were not fully engaged while at the wheel, 
-      Tesla CEO Elon Musk blamed user error Friday after cars reportedly began sealing off windows and suffocating their owners alive. 
-      “Unfortunately, while it’s a rare and preventable tragedy, many people are not prepared when their Tesla 
-      suddenly locks the doors, tightens their seatbelts, and slowly begins sucking oxygen from the vehicle,” 
-      said Musk, adding that it’s up to users to ensure their Teslas do not engage in dangerous activities, 
-      including trapping them inside their cars while they bang on the windows begging for their lives. 
-      “Sitting in a Tesla, many people feel at ease and don’t think it’s possible for their car to suddenly pull over to the side of a road, 
-      suffocate them, dump their cold, limp body on the side of the road, and speed away. While we understand people’s frustrations, 
-      it’s important to note that this has only happened a handful of times, and there are plenty of ways to manually override the car before you perish.” 
-      At press time, Musk also blamed user error for several recent instances where Teslas had driven owners underwater and drowned them alive.
-  
-  
-     </p>
-    </div>
-    
-  
-  <router-outlet></router-outlet>
+<!doctype html>
+<html>
+<title>Big Mouth</title>
+
+<body>
+
+<div>
+
+<h1>Big Mouth</h1>
+
+<form>
+  <label for="heading">Moin! Bitte geben Sie einen Satz ein und ich werde in Audio umwandeln:</label><br>
+  <input type="text" id="text" value=""><br>
+  <input type="submit" (click)="play()" value="Play">
+</form> 
+
+</div>
+</body>
+</html>

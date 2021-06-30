@@ -19,8 +19,8 @@ export class BigMouthApiService {
       body: {
         text: text,
         properties: {
-          gender:"female",
-          languages:"en-US" 
+          voice_name:"en-US-Guy24kRUS",
+          language:"en-US" 
         }
       }, //Make xml requst
      });
