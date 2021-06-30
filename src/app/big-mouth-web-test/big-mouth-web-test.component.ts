@@ -18,13 +18,22 @@ export class BigMouthWebTestComponent {
   }
 
   play(paragragh: string ) {
+<<<<<<< HEAD
   
+=======
+>>>>>>> 1630c05bdb299707fdf15daf0c4da2721dbaf2ab
 
   var context: AudioContext;    // Audio context
 
   context = new AudioContext();
+<<<<<<< HEAD
    this.bigMouthApiService.getTexttoSpeach(paragragh).subscribe(result  => console.log(result)
     );
+=======
+   this.bigMouthApiService.getTexttoSpeach(paragragh).subscribe(result  => this.audioObj.src = result );
+   console.log(this.audioObj);
+   this.audioObj.play();
+>>>>>>> 1630c05bdb299707fdf15daf0c4da2721dbaf2ab
   }
 
 }
