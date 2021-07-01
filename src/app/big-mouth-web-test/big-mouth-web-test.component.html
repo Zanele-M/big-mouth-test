@@ -12,11 +12,9 @@
   <input #text type="text" id="text" text.value=""><br>
   <input #text type="text" id="language" language.value="en-US" ><br>
   <input #text type="text" id="voice_name" voice_name.value="en-US-Guy24kRUS"><br>
-  <input type="submit" (click)="play(text.value)" value="submit">
+  <input type="submit" (click)="getAudio(text.value)" value="submit">
   <br><br>
-  <audio controls autoplay muted>
-  Your browser does not support the audio element.
-  </audio>
+ 
 
 </div>
 </body>
