@@ -16,11 +16,11 @@ export class BigMouthWebTestComponent {
 
   }
 
-  getAudio(paragragh: string ) {
+  getAudio(paragragh: string, language: string, voiceName: string ) {
 
    var buf;
 
-   this.bigMouthApiService.getTexttoSpeach(paragragh).subscribe(result  => this.context.decodeAudioData(result, (buffer) => {
+   this.bigMouthApiService.getTexttoSpeach(paragragh, language, voiceName ).subscribe(result  => this.context.decodeAudioData(result, (buffer) => {
     buf = buffer;
     this.play(buf);
 })

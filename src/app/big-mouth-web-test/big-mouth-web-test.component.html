@@ -8,21 +8,19 @@
 
 <h1>Big Mouth</h1>
 
+<form>
   <label for="heading">Hello! Please enter your text here:</label><br>
   <input #text type="text" id="text" text.value=""><br>
-<<<<<<< Updated upstream
-  <input #text type="text" id="language" language.value="en-US" ><br>
-  <input #text type="text" id="voice_name" voice_name.value="en-US-Guy24kRUS"><br>
-  <input type="submit" (click)="getAudio(text.value)" value="submit">
-=======
+
   <label for="heading">Hello! Please select your language here:</label><br>
-  <select class="select" name="language" id="language"><option value="en-US">en-US</option></select><br>
+  <input #text type="text" id="language" language.value=""><br>
+
   <label for="heading">Hello! Please select your voice name here:</label><br>
-  <select class="select" name="voice_name" id="voice_name"><option value="en-US-Guy24kRUS">en-US-Guy24kRUS</option></select><br><br>
-  <input type="submit" (click)="play(text.value, language.value, voice_name.value)" value="submit">
->>>>>>> Stashed changes
+  <input #text type="text" id="voice_name" voiceName.value=""><br>
+
+  <input type="submit" (click)="getAudio( text.value, language.value, voiceName.value )" value="submit">
   <br><br>
- 
+ </form>
 
 </div>
 </body>
