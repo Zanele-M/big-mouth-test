@@ -1,7 +1,5 @@
 import { Component, Output } from '@angular/core';
-import { EventEmitter } from '@angular/core';
 import { BigMouthApiService } from '../services/big-mouth-api.service';
-
 
 @Component({
   selector: 'app-big-mouth-web-test',
@@ -10,30 +8,36 @@ import { BigMouthApiService } from '../services/big-mouth-api.service';
 })
 export class BigMouthWebTestComponent {
 
+  private context = new AudioContext();
 
- 
   constructor(private bigMouthApiService: BigMouthApiService){}
  
   ngOnInit(): void {
+
   }
 
-  play(paragragh: string ) {
-<<<<<<< HEAD
-  
-=======
->>>>>>> 1630c05bdb299707fdf15daf0c4da2721dbaf2ab
+  getAudio(paragragh: string ) {
 
-  var context: AudioContext;    // Audio context
+   var buf;
 
-  context = new AudioContext();
-<<<<<<< HEAD
-   this.bigMouthApiService.getTexttoSpeach(paragragh).subscribe(result  => console.log(result)
+   this.bigMouthApiService.getTexttoSpeach(paragragh).subscribe(result  => this.context.decodeAudioData(result, (buffer) => {
+    buf = buffer;
+    this.play(buf);
+})
     );
-=======
-   this.bigMouthApiService.getTexttoSpeach(paragragh).subscribe(result  => this.audioObj.src = result );
-   console.log(this.audioObj);
-   this.audioObj.play();
->>>>>>> 1630c05bdb299707fdf15daf0c4da2721dbaf2ab
+
   }
+  play(buf:AudioBuffer) {
+    // Create a source node from the buffer
+    var source = this.context.createBufferSource();
+    source.buffer = buf;
+    // Connect to the final output node (the speakers)
+    source.connect(this.context.destination);
+    // Play immediately
+    source.start(0);
+}
+
+  
+
 
 }
