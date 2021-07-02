@@ -28,8 +28,8 @@ export class BigMouthWebTestComponent {
 
   }
 
-  voiceNames = ["en-US-Guy24kRUS"];
-  languages = ["en-US"]
+  voiceNames = ["en-US-Guy24kRUS", "de-DE-KatjaNeural"];
+  languages = ["en-US", "de-DE"]
 
   getAudio() {
 
