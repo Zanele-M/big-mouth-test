@@ -4,23 +4,27 @@
 
 <body>
 
-<div>
+<div class="main">
 
 <h1>Big Mouth</h1>
 
-<form>
-  <label for="heading">Hello! Please enter your text here:</label><br>
-  <input #text type="text" id="text" text.value=""><br>
-
-  <label for="heading">Hello! Please select your language here:</label><br>
-  <input #text type="text" id="language" language.value=""><br>
-
-  <label for="heading">Hello! Please select your voice name here:</label><br>
-  <input #text type="text" id="voice_name" voiceName.value=""><br>
-
-  <input type="submit" (click)="getAudio( text.value, language.value, voiceName.value )" value="submit">
-  <br><br>
- </form>
+  <form [formGroup]="ttsForm" (ngSubmit)="getAudio()">
+    <label>Please enter text:</label><br>
+    <textarea formControlName="text" cols="100" rows="10"></textarea>
+    <br><br>
+    <label>Choose your language</label><br>
+    <select formControlName="language">
+       <option *ngFor="let language of languages" [ngValue]="language">{{language}}</option>
+    </select>
+    <br><br>
+    <label>Choose your voice name</label><br>
+    <select formControlName="voiceName">
+      <option *ngFor="let voiceName of voiceNames" [ngValue]="voiceName">{{voiceName}}</option>
+   </select>
+   <br><br>
+    <!-- Submit Button -->
+    <button type="submit">Submit</button>
+ </form> 
 
 </div>
 </body>

@@ -11,14 +11,14 @@ export class BigMouthApiService {
 
   constructor(private httpClient: HttpClient){}
 
-  getTexttoSpeach(text: string, language: string, voiceName: string): Observable<any> {
+  getTexttoSpeach(text: string, languageInput: string, voiceName: string): Observable<any> {
     const finalRequest = ({
       url: 'https://bigmouth.azurewebsites.net/api/bigmouthtrigger', 
       body: {
         text: text,
         properties: {
           voice_name: voiceName,
-          language: language 
+          language: languageInput 
         }
       }, //Make xml requst
      });
