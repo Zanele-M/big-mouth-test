@@ -1,6 +1,6 @@
 export class Properties {
     constructor(
     public text: string, 
-    public language: string,
-    public voice_name: string){}
+    public language: Array<String>,
+    public voice_name: Array<String>){}
    }

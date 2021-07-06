@@ -1,6 +1,6 @@
 import { Component, Output } from '@angular/core';
 import { BigMouthApiService } from '../services/big-mouth-api.service';
-//import { Parameters } from '../models/parameters';
+//import { Properties } from '../models/properties';
 import { FormsModule, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 
@@ -28,8 +28,10 @@ export class BigMouthWebTestComponent {
 
   }
 
-  voiceNames = ["en-US-Guy24kRUS", "de-DE-KatjaNeural"];
-  languages = ["en-US", "de-DE"]
+  
+
+  voiceNames = ["en-US-Guy24kRUS", "de-DE-KatjaNeural", "de-DE-ConradNeural"];
+  languages = ["en-US", "de-DE"];
 
   getAudio() {
 
@@ -44,8 +46,7 @@ export class BigMouthWebTestComponent {
       buf = buffer;
       this.play(buf);
     })
-    );
-
+    )
   }
 
   play(buf: AudioBuffer) {
