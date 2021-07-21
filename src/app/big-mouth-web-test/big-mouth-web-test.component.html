@@ -12,16 +12,24 @@
     <label>Please enter text:</label><br>
     <textarea class="textarea" formControlName="text" cols="100" rows="10"></textarea>
     <br><br>
-    <label>Choose your language</label><br>
-    <select formControlName="language">
-       <option *ngFor="let language of languages" [ngValue]="language">{{language}}</option>
-    </select>
-    <br><br>
-    <label>Choose your voice name</label><br>
-    <select formControlName="voiceName">
-      <option *ngFor="let voiceName of voiceNames" [ngValue]="voiceName">{{voiceName}}</option>
+    <label>Choose your language:</label><br>
+    <select formControlName="language" [(ngModel)]="voiceNameFilter">
+      <option *ngFor="let language of languages" [ngValue]="language" (change)=getVoiceNames()>{{language.languageName}}</option>
    </select>
    <br><br>
+   <label>Choose your voice name:</label><br>
+   <select formControlName="voiceName">
+     <option *ngFor="let voices of voiceNameFilter?.voices" [ngValue]="voices">{{voices}}</option>
+  </select>
+  <br><br>
+   <br><br>
+   <div>
+   <label>Please input you phoneme:</label><br><br>
+   <label>alphabet:</label><input formControlName="alphabet"/><br><br>
+   <label>ph:</label><input formControlName="ph" /><br><br>
+   <label>word:</label><input formControlName="word"/><br><br>
+   </div>
+  <br><br>
     <!-- Submit Button -->
     <button type="submit">Submit</button>
  </form> 

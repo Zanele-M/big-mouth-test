@@ -1,7 +1,8 @@
 import { Component, Output } from '@angular/core';
 import { BigMouthApiService } from '../services/big-mouth-api.service';
-//import { Properties } from '../models/properties';
+import { TextItemNode } from '../models/TextItemNode';
 import { FormsModule, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Language } from '../models/language';
 
 
 @Component({
@@ -13,6 +14,11 @@ export class BigMouthWebTestComponent {
 
   private context = new AudioContext();
   ttsForm!: FormGroup;
+  languages: Array<Language> = [];
+  voiceNameFilter: any;
+  
+  english = new Language("English", "en-US", ["en-US-Gut24kRUS"]);
+  german = new Language("German", "de-DE", ["de-DE-KatjaNeural", "de-DE-ConradNeural"]);
 
   constructor(private bigMouthApiService: BigMouthApiService, private fb: FormBuilder) { }
 
@@ -23,30 +29,34 @@ export class BigMouthWebTestComponent {
      this.ttsForm = this.fb.group({
          text: new FormControl(),
          language: new FormControl(),
-         voiceName: new FormControl()
+         voiceName: new FormControl(),
+         alphabet: new FormControl(),
+         ph: new FormControl(),
+         word: new FormControl()
      });
-
+     this.languages.push(this.german, this.english);
   }
 
-  
-
-  voiceNames = ["en-US-Guy24kRUS", "de-DE-KatjaNeural", "de-DE-ConradNeural"];
-  languages = ["en-US", "de-DE"];
-
   getAudio() {
-
     const textInput=this.ttsForm.controls.text.value;
     const languageInput= this.ttsForm.controls.language.value;
     const voiceName= this.ttsForm.controls.voiceName.value;
+    const alphabet= this.ttsForm.controls.alphabet.value;
+    const ph= this.ttsForm.controls.ph.value;
+    const word= this.ttsForm.controls.word.value;
 
-
+    const textItemNode = new TextItemNode()
     var buf;
 
-    this.bigMouthApiService.getTexttoSpeach(textInput, languageInput, voiceName).subscribe(result => this.context.decodeAudioData(result, (buffer) => {
+    this.bigMouthApiService.getTexttoSpeach(textInput, languageInput, voiceName, alphabet, ph, word).subscribe(result => this.context.decodeAudioData(result, (buffer) => {
       buf = buffer;
       this.play(buf);
     })
     )
+  }
+
+  getVoiceNames(){
+    
   }
 
   play(buf: AudioBuffer) {
