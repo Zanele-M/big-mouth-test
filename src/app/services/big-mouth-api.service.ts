@@ -20,12 +20,7 @@ export class BigMouthApiService {
         properties: {
           voice_name: voiceName,
           language: languageInput 
-        },
-        /*phoneme: {
-          alphabet:  alphabet,
-          ph: ph,
-          word: word
-        }*/
+        }
       }, //Make xml requst
      });
     
@@ -44,4 +39,9 @@ export class BigMouthApiService {
     }
     return throwError(error);
   }
+        /*phoneme: {
+          alphabet:  alphabet,
+          ph: ph,
+          word: word
+        }*/
 }

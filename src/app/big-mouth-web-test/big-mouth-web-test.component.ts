@@ -55,10 +55,6 @@ export class BigMouthWebTestComponent {
     )
   }
 
-  getVoiceNames(){
-    
-  }
-
   play(buf: AudioBuffer) {
     // Create a source node from the buffer
     var source = this.context.createBufferSource();
