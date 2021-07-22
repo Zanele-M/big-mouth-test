@@ -1,8 +1,9 @@
 import { Component, Output } from '@angular/core';
 import { BigMouthApiService } from '../services/big-mouth-api.service';
-import { TextItemNode } from '../models/TextItemNode';
+import { Phoneme } from '../models/phoneme';
 import { FormsModule, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Language } from '../models/language';
+import { SsmlObject } from '../models/ssml-object';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class BigMouthWebTestComponent {
   private context = new AudioContext();
   ttsForm!: FormGroup;
   languages: Array<Language> = [];
+  phonemes: Array<Phoneme> = [];
   voiceNameFilter: any;
   
   english = new Language("English", "en-US", ["en-US-Gut24kRUS"]);
@@ -38,17 +40,33 @@ export class BigMouthWebTestComponent {
   }
 
   getAudio() {
-    const textInput=this.ttsForm.controls.text.value;
-    const languageInput= this.ttsForm.controls.language.value;
-    const voiceName= this.ttsForm.controls.voiceName.value;
+    const textInput = this.ttsForm.controls.text.value;
+    const languageName  = this.ttsForm.controls.language.value;
+    let languageCode : any;
+
+    if ( languageName == "English"){
+      languageCode = this.english.languageCode
+    }
+    else {
+       languageCode = this.german.languageCode
+
+    }
+    const voiceName = this.ttsForm.controls.voiceName.value;
+
     const alphabet= this.ttsForm.controls.alphabet.value;
     const ph= this.ttsForm.controls.ph.value;
     const word= this.ttsForm.controls.word.value;
 
-    const textItemNode = new TextItemNode()
+    const phonemeObject = new Phoneme(alphabet, ph, word);
+
+    this.phonemes.push(phonemeObject)
+
+    const ssmlObject = new SsmlObject(textInput, languageCode, voiceName, this.phonemes)
+
+
     var buf;
 
-    this.bigMouthApiService.getTexttoSpeach(textInput, languageInput, voiceName, alphabet, ph, word).subscribe(result => this.context.decodeAudioData(result, (buffer) => {
+    this.bigMouthApiService.getTexttoSpeach(ssmlObject).subscribe(result => this.context.decodeAudioData(result, (buffer) => {
       buf = buffer;
       this.play(buf);
     })

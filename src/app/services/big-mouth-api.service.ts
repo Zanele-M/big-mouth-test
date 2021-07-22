@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse } 
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
+import { SsmlObject } from '../models/ssml-object';
 import { literal } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({
@@ -12,15 +13,11 @@ export class BigMouthApiService {
 
   constructor(private httpClient: HttpClient){}
 
-  getTexttoSpeach(text: string, languageInput: string, voiceName: string, alphabet: string, ph: string, word: string): Observable<any> {
+  getTexttoSpeach(ssmlOject:SsmlObject): Observable<any> {
     const finalRequest = ({
       url: 'https://bigmouth.azurewebsites.net/api/bigmouthtrigger', 
       body: {
-        text: text,
-        properties: {
-          voice_name: voiceName,
-          language: languageInput 
-        }
+      ssmlOject
       }, //Make xml requst
      });
     
