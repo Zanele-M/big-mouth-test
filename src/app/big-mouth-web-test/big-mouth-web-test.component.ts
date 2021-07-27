@@ -4,6 +4,7 @@ import { Phoneme } from '../models/phoneme';
 import { FormsModule, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Language } from '../models/language';
 import { SsmlObject } from '../models/ssml-object';
+import { Lexicon } from '../models/lexicon';
 
 
 @Component({
@@ -17,7 +18,9 @@ export class BigMouthWebTestComponent {
   ttsForm!: FormGroup;
   languages: Array<Language> = [];
   phonemes: Array<Phoneme> = [];
+  lexicons: Array<Lexicon> = [];
   voiceNameFilter: any;
+  lexiMessage: String = "";
   
   english = new Language("English", "en-US", ["en-US-Gut24kRUS"]);
   german = new Language("German", "de-DE", ["de-DE-KatjaNeural", "de-DE-ConradNeural"]);
@@ -34,7 +37,10 @@ export class BigMouthWebTestComponent {
          voiceName: new FormControl(),
          alphabet: new FormControl(),
          ph: new FormControl(),
-         word: new FormControl()
+         word: new FormControl(),
+         type: new FormControl(),
+         vocable: new FormControl(),
+         grapheme: new FormControl(),
      });
      this.languages.push(this.german, this.english);
   }
@@ -49,7 +55,6 @@ export class BigMouthWebTestComponent {
     }
     else {
        languageCode = this.german.languageCode
-
     }
     const voiceName = this.ttsForm.controls.voiceName.value;
 
@@ -61,8 +66,7 @@ export class BigMouthWebTestComponent {
 
     this.phonemes.push(phonemeObject)
 
-    const ssmlObject = new SsmlObject(textInput, languageCode, voiceName, this.phonemes)
-
+    const ssmlObject = new SsmlObject(textInput, languageCode, voiceName/*,this.phonemes*/, this.lexicons)
 
     var buf;
 
@@ -71,6 +75,24 @@ export class BigMouthWebTestComponent {
       this.play(buf);
     })
     )
+  }
+
+  addLexicon(){
+    this.lexiMessage = "";
+    const type= this.ttsForm.controls.type.value;
+    const grapheme= this.ttsForm.controls.grapheme.value;
+    const vocable= this.ttsForm.controls.vocable.value;
+
+    const lexiconObject = new Lexicon(type, grapheme, vocable);
+    this.lexicons.push(lexiconObject); 
+     
+     for(let i = 0; i < this.lexicons.length; i++){
+       this.lexiMessage += this.lexicons[i].type + ": " + this.lexicons[i].grapheme + " " + this.lexicons[i].vocable + " | ";
+     }
+
+    this.ttsForm.controls.type.reset();
+    this.ttsForm.controls.grapheme.reset();
+    this.ttsForm.controls.vocable.reset();
   }
 
   play(buf: AudioBuffer) {
