@@ -27,9 +27,6 @@ export class BigMouthWebTestComponent {
 
   constructor(private bigMouthApiService: BigMouthApiService, private fb: FormBuilder) { }
 
-
-  private form: FormGroup | undefined;
-
   ngOnInit() {
      this.ttsForm = this.fb.group({
          text: new FormControl(),

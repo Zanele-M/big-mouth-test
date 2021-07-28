@@ -14,11 +14,10 @@ export class BigMouthApiService {
   constructor(private httpClient: HttpClient){}
 
   getTexttoSpeach(ssmlOject:SsmlObject): Observable<any> {
+    let body = JSON.stringify(ssmlOject);
     const finalRequest = ({
       url: 'https://bigmouth.azurewebsites.net/api/bigmouthtrigger', 
-      body: {
-      ssmlOject
-      }, //Make xml requst
+      body: body, //Make xml requst
      });
 
      console.log("ssmlObject:", ssmlOject)
