@@ -5,6 +5,7 @@ import { FormsModule, FormGroup, FormBuilder, FormControl, Validators } from '@a
 import { Language } from '../models/language';
 import { SsmlObject } from '../models/ssml-object';
 import { Lexicon } from '../models/lexicon';
+import { buffer } from 'rxjs/operators';
 
 
 @Component({
@@ -65,12 +66,13 @@ export class BigMouthWebTestComponent {
 
     const ssmlObject = new SsmlObject(textInput, languageCode, voiceName/*,this.phonemes*/, this.lexicons)
 
-    var buf;
+    var buf= this.context.createBufferSource();
 
     this.bigMouthApiService.getTexttoSpeach(ssmlObject).subscribe(result => this.context.decodeAudioData(result, (buffer) => {
-      buf = buffer;
-      this.play(buf);
-    })
+      console.log(buffer)
+      buf.buffer = buffer;
+      this.play(buf.buffer);
+    }).catch(function(error){console.log(buffer)})
     )
   }
 

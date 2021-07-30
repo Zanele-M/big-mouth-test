@@ -20,7 +20,7 @@ export class BigMouthApiService {
       body: body, //Make xml requst
      });
 
-     console.log("ssmlObject:", ssmlOject)
+     console.log("body:", body)
     
     return this.httpClient
       .post( finalRequest.url, finalRequest.body, {responseType: 'arraybuffer'})
