@@ -40,14 +40,15 @@ export class BigMouthWebTestComponent {
          type: new FormControl(),
          vocable: new FormControl(),
          grapheme: new FormControl(),
+         articleName: new FormControl(),
      });
      this.languages.push(this.german, this.english);
 
      this.bigMouthApiService.getLexicon().subscribe(data => {this.lexicon = data});
+     console.log("Lexicon: ", this.lexicon);
   }
 
   getAudio() {
-    const textInput = this.ttsForm.controls.text.value;
     const languageName  = this.ttsForm.controls.language.value;
     let languageCode : any;
 
@@ -57,7 +58,6 @@ export class BigMouthWebTestComponent {
     else {
        languageCode = this.german.languageCode
     }
-    const voiceName = this.ttsForm.controls.voiceName.value;
 
     const alphabet= this.ttsForm.controls.alphabet.value;
     const ph= this.ttsForm.controls.ph.value;
@@ -67,15 +67,15 @@ export class BigMouthWebTestComponent {
 
     this.phonemes.push(phonemeObject)
 
-    const ssmlObject = new SsmlObject(textInput, languageCode, voiceName/*,this.phonemes*/, this.lexicons)
+    //const ssmlObject = new SsmlObject(textInput, languageCode, voiceName, alphabet, this.ttsForm.controls.articleName.value, true, this.ttsForm.controls.type.value, this.ttsForm.controls.grapheme.value, this.ttsForm.controls.vocable.value)
 
     var buf= this.context.createBufferSource();
 
-    this.bigMouthApiService.getTexttoSpeach(ssmlObject).subscribe(result => this.context.decodeAudioData(result, (buffer) => {
+    this.bigMouthApiService.getTexttoSpeach(this.ttsForm.controls.text.value, languageCode, this.ttsForm.controls.voiceName.value, this.ttsForm.controls.alphabet.value, this.ttsForm.controls.articleName.value,  this.ttsForm.controls.type.value,  this.ttsForm.controls.grapheme.value, this.ttsForm.controls.vocable.value ).subscribe(result => this.context.decodeAudioData(result, (buffer) => {
       console.log(buffer)
       buf.buffer = buffer;
       this.play(buf.buffer);
-    }).catch(function(error){console.log(buffer)})
+    }).catch(function(error){})
     )
   }
 
@@ -96,6 +96,10 @@ export class BigMouthWebTestComponent {
     this.ttsForm.controls.grapheme.reset();
     this.ttsForm.controls.vocable.reset();
   }
+
+  /*getLexicon(): any{
+    return this.bigMouthApiService.getLexicon();
+  }*/
 
   play(buf: AudioBuffer) {
     // Create a source node from the buffer

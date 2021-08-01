@@ -12,16 +12,21 @@
       <label>Please enter text:</label><br>
       <textarea class="textarea" formControlName="text" cols="100" rows="10"></textarea>
       <br><br>
-      <label>Choose your language:</label><br>
+      <label>Choose your language:</label><br><br>
       <select formControlName="language" [(ngModel)]="voiceNameFilter">
         <option *ngFor="let language of languages" [ngValue]="language">{{language.languageName}}</option>
       </select>
       <br><br>
-      <label>Choose your voice name:</label><br>
+      <label>Choose your voice name:</label><br><br>
       <select formControlName="voiceName">
         <option *ngFor="let voices of voiceNameFilter?.voices" [ngValue]="voices">{{voices}}</option>
-      </select>
+      </select><br><br>
+      <label>Please enter your alphabet name:</label><br><br>
+       <input formControlName="alphabet">
       <br><br>
+      <label>Please enter your article name:</label><br><br>
+      <input formControlName="articleName">
+     <br><br>
       <!--<div>
         <a
           href="https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/speech-synthesis-markup?tabs=csharp#use-phonemes-to-improve-pronunciation">Link
