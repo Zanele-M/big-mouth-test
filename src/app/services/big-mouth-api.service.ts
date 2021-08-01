@@ -11,6 +11,8 @@ import { literal } from '@angular/compiler/src/output/output_ast';
 
 export class BigMouthApiService {
 
+  headers = new HttpHeaders().set("x-functions-key", "ObnUdrfaVjPCeUsd6ZxcKdrztH5NrX/leiCbn798T0uaey3d3/mvjA==");
+
   constructor(private httpClient: HttpClient){}
 
   getTexttoSpeach(ssmlOject:SsmlObject): Observable<any> {
@@ -21,10 +23,17 @@ export class BigMouthApiService {
      });
 
      console.log("body:", body)
-    
     return this.httpClient
-      .post( finalRequest.url, finalRequest.body, {responseType: 'arraybuffer'})
+      .post( finalRequest.url, finalRequest.body, {headers: this.headers, responseType: 'arraybuffer'})
       .pipe(catchError(this.handleError));
+  }
+
+  getLexicon(){
+
+    const finalRequest = ({
+      url: 'https://bigmouth.azurewebsites.net/api/bigmouthtrigger',
+    });
+    return this.httpClient.post(finalRequest.url, { headers: this.headers } ).pipe(catchError(this.handleError)) as Observable<any>; 
   }
 
   handleError(error: Error) {

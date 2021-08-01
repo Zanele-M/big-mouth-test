@@ -22,6 +22,7 @@ export class BigMouthWebTestComponent {
   lexicons: Array<Lexicon> = [];
   voiceNameFilter: any;
   lexiMessage: String = "";
+  lexicon: any;
   
   english = new Language("English", "en-US", ["en-US-Gut24kRUS"]);
   german = new Language("German", "de-DE", ["de-DE-KatjaNeural", "de-DE-ConradNeural"]);
@@ -41,6 +42,8 @@ export class BigMouthWebTestComponent {
          grapheme: new FormControl(),
      });
      this.languages.push(this.german, this.english);
+
+     this.bigMouthApiService.getLexicon().subscribe(data => {this.lexicon = data});
   }
 
   getAudio() {
