@@ -33,8 +33,8 @@ export class BigMouthApiService {
             }
         ]
     }, //Make xml requst
-     });
-
+   });
+    console.log("body: ", finalRequest.body)
     return this.httpClient
       .post( finalRequest.url, finalRequest.body, {headers: this.headers, responseType: 'arraybuffer'})
       .pipe(catchError(this.handleError));

@@ -11,27 +11,25 @@
     <form [formGroup]="ttsForm" (ngSubmit)="getAudio()">
       <label>Please enter text:</label><br>
       <textarea class="textarea" formControlName="text" cols="100" rows="10"></textarea>
-      <br><br>
+      <p class="example">Please sneak in: BTW (somewhere in your text)</p>
+      <br>
       <label>Choose your language:</label><br><br>
       <select formControlName="language" [(ngModel)]="voiceNameFilter">
         <option *ngFor="let language of languages" [ngValue]="language">{{language.languageName}}</option>
       </select>
-      <br><br>
+      <p class="example">Please select english as this works specifically for english.</p>
+      <br>
       <label>Choose your voice name:</label><br><br>
       <select formControlName="voiceName">
         <option *ngFor="let voices of voiceNameFilter?.voices" [ngValue]="voices">{{voices}}</option>
-      </select><br><br>
-      <label>Please enter your alphabet name:</label><br><br>
-       <input formControlName="alphabet">
-      <br><br>
-      <label>Please enter your article name:</label><br><br>
-      <input formControlName="articleName">
-     <br><br>
-      <!--<div>
+      </select><p class="example">Please select Jenny.</p><br>
+      <div>
+       
+
         <a
-          href="https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/speech-synthesis-markup?tabs=csharp#use-phonemes-to-improve-pronunciation">Link
+          href="https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/speech-synthesis-markup?tabs=csharp#use-custom-lexicon-to-improve-pronunciation">Link
           to SSML Azure Documentation</a>
-        <h2>Phonemes:</h2><br>
+        <h2>Lexicon:</h2>
         <h5>Alphabet</h5>
         <p>Specifies the phonetic alphabet to use when synthesizing the pronunciation of the string in the ph attribute.
           The string specifying the alphabet must be specified in lowercase letters. The following are the possible
@@ -44,40 +42,53 @@
         <a href="https://documentation.help/Microsoft-Speech-Platform-SDK-11/17509a49-cae7-41f5-b61d-07beaae872ea.htm">ups
           - Universal Phone Set</a><br><br>
 
-        <h5>ph</h5>
-        <p>A string containing phones that specify the pronunciation of the word in the phoneme element. If the
-          specified string contains unrecognized phones, the text-to-speech (TTS) service rejects the entire SSML
-          document and produces none of the speech output specified in the document.</p><br>
-
-        <h5>word</h5>
-        <p>The string on which the phenome will be applied.</p><br>
-
-        <div class="block">
+        <!--div class="block">
           <label>Please enter your phenome details: </label><br><br>
           <label>alphabet: </label><input formControlName="alphabet" /><br><br>
           <label>ph: </label><input formControlName="ph" /><br><br>
           <label>word: </label><input formControlName="word" /><br><br>
           <button>Add phoneme</button>
-        </div>
-      </div>-->
+        </div-->
+      </div>
+
+      <label>Please enter your alphabet name:</label><br><br>
+      <input formControlName="alphabet">
+      <p class="example">Please enter: ipa </p><br>
+     <label>Please enter your article name:</label><br><br>
+     <input formControlName="articleName">
+     <p class="example">Please enter article name.</p>
+    <br>
 
       <br><br>
 
       <div class="block">
+
+        <div><h3>What is a phoneme?</h3>
+          <p>Element used to influence the pronunciation of specified words in the paragraph.</p>
+        </div>
+
+        <div><h3>What is a alias?</h3>
+          <p>Element used to indicate the pronunciation of an acronym or an abbreviated term.</p>
+        </div>
+
+        <p>------------------------------------------------------------------------------------------------</p>
+
         <label>Please enter your lexicon details: </label><br><br>
         <select formControlName="type">
           <option value="phoneme" selected>phoneme</option>
           <option>alias</option>
-        </select><br><br>
-        <label>grapheme: </label><input formControlName="grapheme" /><br><br>
-        <label>vocable: </label><input formControlName="vocable" /><br><br>
-        <button (click)="addLexicon()">Add lexicon</button><br><br>
+        </select><p class="example">Lets start by selecting alias</p><br>
+        <label>grapheme: </label><input formControlName="grapheme"/><p class="example">Please enter: BTW</p><p>The string on which the phenome/alias will be applied.</p><br><br>
+        <label>vocable: </label><input formControlName="vocable"/><p class="example">Please enter: by the way</p><p>A string containing phones that specify the pronunciation of the word in the phoneme element. If the
+          specified string contains unrecognized phones, the text-to-speech (TTS) service rejects the entire SSML
+          document and produces none of the speech output specified in the document.</p><br><br>
+        <button (click)="addLexicon()" [disabled]="ttsForm.invalid">Add lexicon</button><br><br>
         <p>{{lexiMessage}}</p>
-  
+        <p class="required">* All fields are required</p>
       </div>
       <br>
       <!-- Submit Button -->
-      <button type="submit">Submit</button>
+      <!--button type="submit">Submit</button-->
     </form>
 
   </div>
