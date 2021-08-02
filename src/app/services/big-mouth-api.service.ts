@@ -16,23 +16,21 @@ export class BigMouthApiService {
 
   constructor(private httpClient: HttpClient){}
 
-  getTexttoSpeach(textInput:string, languageCodes:string, voiceName: string, alphabet: string, articleName: string, grapheme:string, type:string, vocable:string): Observable<any> {
+  getTexttoSpeach(ssmlObject: SsmlObject): Observable<any> {
+
+    
+    let jsonString: any = JSON.stringify(ssmlObject)
+
+    let jsonObject: any = JSON.parse(jsonString)
+
+    console.log("this is the obkect", jsonObject)
     const finalRequest = ({
       url: 'https://bigmouth.azurewebsites.net/api/bigmouthtrigger', 
-      body: {
-        "text": textInput,
-        "language": languageCodes,
-        "voice_name": voiceName,
-        "alphabet": alphabet,
-        "article_name": articleName,
-        "lexicons": [
-            {
-                "type": type,
-                "vocable": vocable,
-                "grapheme": grapheme
-            }
-        ]
-    }, //Make xml requst
+      body: 
+
+        jsonObject
+
+    , 
    });
     console.log("body: ", finalRequest.body)
     return this.httpClient

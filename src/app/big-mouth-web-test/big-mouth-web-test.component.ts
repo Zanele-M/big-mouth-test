@@ -20,7 +20,7 @@ export class BigMouthWebTestComponent {
   ttsForm!: FormGroup;
   languages: Array<Language> = [];
   phonemes: Array<Phoneme> = [];
-  lexicons: Array<Lexicon> = [];
+  lexicons: Lexicon[] = [];
   voiceNameFilter: any;
   lexiMessage: String = "";
   lexicon: any;
@@ -64,15 +64,16 @@ export class BigMouthWebTestComponent {
     const ph= this.ttsForm.controls.ph.value;
     const word= this.ttsForm.controls.word.value;
 
-    const phonemeObject = new Phoneme(alphabet, ph, word);
+    // const phonemeObject = new Phoneme(alphabet, ph, word);
 
-    this.phonemes.push(phonemeObject)
+    // this.phonemes.push(phonemeObject)
 
-    //const ssmlObject = new SsmlObject(textInput, languageCode, voiceName, alphabet, this.ttsForm.controls.articleName.value, true, this.ttsForm.controls.type.value, this.ttsForm.controls.grapheme.value, this.ttsForm.controls.vocable.value)
+    const ssmlObject = new SsmlObject(this.ttsForm.controls.text.value, languageCode, this.ttsForm.controls.voiceName.value, this.ttsForm.controls.alphabet.value, this.ttsForm.controls.articleName.value, this.lexicons)
 
     var buf= this.context.createBufferSource();
  
-    this.bigMouthApiService.getTexttoSpeach(this.ttsForm.controls.text.value, languageCode, this.ttsForm.controls.voiceName.value, this.ttsForm.controls.alphabet.value, this.ttsForm.controls.articleName.value,  this.ttsForm.controls.type.value,  this.ttsForm.controls.grapheme.value, this.ttsForm.controls.vocable.value ).subscribe(result => this.context.decodeAudioData(result, (buffer) => {
+    this.bigMouthApiService.getTexttoSpeach(ssmlObject).subscribe(result => this.context.decodeAudioData(result, (buffer) => {
+      // this.ttsForm.controls.type.value,  this.ttsForm.controls.grapheme.value, this.ttsForm.controls.vocable.value
       console.log(buffer)
       buf.buffer = buffer;
       this.play(buf.buffer);
@@ -88,14 +89,13 @@ export class BigMouthWebTestComponent {
 
     const lexiconObject = new Lexicon(type, grapheme, vocable);
     this.lexicons.push(lexiconObject); 
+
+    console.log(this.lexicons);
+
      
      for(let i = 0; i < this.lexicons.length; i++){
        this.lexiMessage += this.lexicons[i].type + ": " + this.lexicons[i].grapheme + " " + this.lexicons[i].vocable + " | ";
      }
-
-    this.ttsForm.controls.type.reset();
-    this.ttsForm.controls.grapheme.reset();
-    this.ttsForm.controls.vocable.reset();
   }
 
   /*getLexicon(): any{

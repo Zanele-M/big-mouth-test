@@ -3,30 +3,27 @@ import { Phoneme } from "./phoneme";
 
 export class SsmlObject  {
     text!: string;
-    languageCode!: string;
-    voice!: string;
+    language_code!: string;
+    voice_name!: string;
     alphabet!:string;
-    articleName!: string;
-    lexicon!:boolean;
+    article_name!: string;
     //phonemes!:Phoneme[];
     lexicons!:Lexicon[];
 
    constructor(
        text: string,
-       languageCode: string,
-       voice: string,
+       language_code: string,
+       voice_name: string,
        alphabet: string,
-       articleName: string,
-       lexicon:boolean,
+       article_name: string,
        //phonemes:Phoneme[],
        lexicons: Lexicon[]
    ){
     this.text = text;
-    this.languageCode = languageCode;
-    this.voice = voice;  
+    this.language_code = language_code;
+    this.voice_name = voice_name;  
     this.alphabet = alphabet;
-    this.articleName = articleName;
-    this.lexicon = lexicon;
+    this.article_name = article_name;
     //this.phonemes = phonemes;
     this.lexicons = lexicons;
 

@@ -82,13 +82,13 @@
         <label>vocable: </label><input formControlName="vocable"/><p class="example">Please enter: by the way</p><p>A string containing phones that specify the pronunciation of the word in the phoneme element. If the
           specified string contains unrecognized phones, the text-to-speech (TTS) service rejects the entire SSML
           document and produces none of the speech output specified in the document.</p><br><br>
-        <button (click)="addLexicon()" [disabled]="ttsForm.invalid">Add lexicon</button><br><br>
+        <button (click)="addLexicon()" type="button">Add lexicon</button><br><br>
         <p>{{lexiMessage}}</p>
-        <p class="required">* All fields are required</p>
+        <p class="required">*All fields are required</p>
       </div>
       <br>
       <!-- Submit Button -->
-      <!--button type="submit">Submit</button-->
+      <button type="submit" [disabled]="ttsForm.invalid">Submit</button>
     </form>
 
   </div>
